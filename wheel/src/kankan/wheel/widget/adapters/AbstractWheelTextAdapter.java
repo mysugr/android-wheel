@@ -59,6 +59,8 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
     
     // Empty items resources
     protected int emptyItemResourceId;
+
+    protected String customFont;
 	
     /**
      * Constructor
@@ -170,7 +172,11 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
     public void setEmptyItemResource(int emptyItemResourceId) {
         this.emptyItemResourceId = emptyItemResourceId;
     }
-    
+
+    public AbstractWheelTextAdapter setCustomFontFromAssets(String customFont){
+        this.customFont = customFont;
+        return this;
+    }
     
     /**
      * Returns text for specified item
@@ -223,7 +229,10 @@ public abstract class AbstractWheelTextAdapter extends AbstractWheelAdapter {
         view.setGravity(Gravity.CENTER);
         view.setTextSize(textSize);
         view.setLines(1);
-        view.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
+        if(customFont != null)
+            view.setTypeface(Typeface.createFromAsset(context.getAssets(),customFont));
+        else
+            view.setTypeface(Typeface.SANS_SERIF, Typeface.BOLD);
     }
     
     /**
