@@ -340,6 +340,11 @@ public class WheelView extends View {
 		return currentItem;
 	}
 
+	public void setCurrentItemWithoutListener(int index){
+		this.currentItem = index;
+		invalidate();
+	}
+
 	/**
 	 * Sets the current item. Does nothing when index is wrong.
 	 * 
